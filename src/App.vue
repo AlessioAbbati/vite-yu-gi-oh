@@ -23,9 +23,14 @@ export default {
 
 <template>
   <app-header />
-  <cards-list />
+  <main>
+    <cards-list />
+  </main>
 </template>
 
 <style lang="scss">
-
+main {
+  background-color: #D48F38;
+  height: 100vh;
+}
 </style>
