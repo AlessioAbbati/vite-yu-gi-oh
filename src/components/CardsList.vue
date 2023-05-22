@@ -22,6 +22,7 @@ export default {
         v-for="Card in store.CardsList"
         :key="Card.id"
         :CardData="Card"
+        class="card-container"
      />
   </div>
 </template>
@@ -31,7 +32,14 @@ export default {
     background-color: white;
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    justify-content: space-around;
+    width: 90%;
     padding: 3rem;
+    
+    .card-container {
+      background-color: #D48F38;
+      margin-inline: 1rem;
+      margin-bottom: .6rem;
+    }
   }
 </style>
