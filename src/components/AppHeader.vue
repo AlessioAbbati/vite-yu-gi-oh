@@ -16,6 +16,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    height: 4rem;
     .logo {
         width: 10%;
         display: flex;

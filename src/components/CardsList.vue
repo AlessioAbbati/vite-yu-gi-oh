@@ -32,5 +32,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 80%;
+    padding: 3rem;
   }
 </style>
