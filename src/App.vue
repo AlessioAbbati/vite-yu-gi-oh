@@ -36,7 +36,6 @@ export default {
 <style lang="scss">
 main {
   background-color: #D48F38;
-  height: 100vh;
   display: grid;
   place-items: center;
 }

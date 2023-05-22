@@ -29,7 +29,8 @@ export default {
 <style lang="scss" scoped>
   .cards-list {
     background-color: white;
-    height: 90%;
-    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
   }
 </style>
