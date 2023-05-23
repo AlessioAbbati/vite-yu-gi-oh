@@ -24,6 +24,14 @@ export default {
     requestDataFromApi() {
       axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php', )   
      .then(response => (this.store.ArrArchetypes = response.data));
+    },
+    filteredArchetypes() {
+      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+        params: {
+          archetype: this.store.searchArchetypes,
+        }
+      })
+      .then(response => (this.store.CardsList = response.data.data));
     }
   }, 
   created() {
@@ -41,7 +49,7 @@ export default {
 <template>
   <app-header />
   <main>
-    <class-choose @performSearch="requestDataFromApi"/>
+    <class-choose @performSearch="filteredArchetypes"/>
     <app-results />
     <cards-list />
   </main>
