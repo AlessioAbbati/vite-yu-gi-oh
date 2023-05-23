@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     requestDataFromApi() {
-      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php', )   
+      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')   
      .then(response => (this.store.ArrArchetypes = response.data));
     },
     filteredArchetypes() {
@@ -32,16 +32,20 @@ export default {
         }
       })
       .then(response => (this.store.CardsList = response.data.data));
-    }
-  }, 
+    },
+    reset() {
+      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
+      .then(response => (this.store.CardsList = response.data.data));
+    }, 
+  },
   created() {
     axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
     .then(response => (this.store.CardsList = response.data.data));
-
+    
     this.requestDataFromApi();
     
   }
-};
+}
 
 
 </script>
@@ -49,7 +53,7 @@ export default {
 <template>
   <app-header />
   <main>
-    <class-choose @performSearch="filteredArchetypes"/>
+    <class-choose @performSearch="filteredArchetypes" @resetSearch="reset"/>
     <app-results />
     <cards-list />
   </main>
