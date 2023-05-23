@@ -22,15 +22,16 @@ export default {
   },
   methods: {
     requestDataFromApi() {
-      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')   
-     .then(response => (this.store.ArrArchetypes = response.data.archetype_name));
+      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php', )   
+     .then(response => (this.store.ArrArchetypes = response.data));
     }
   }, 
   created() {
+    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
+    .then(response => (this.store.CardsList = response.data.data));
+
     this.requestDataFromApi();
     
-    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
-      .then(response => (this.store.CardsList = response.data.data));
   }
 };
 
