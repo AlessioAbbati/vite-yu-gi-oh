@@ -4,6 +4,7 @@ import CardsList from './components/CardsList.vue';
 import axios from 'axios';
 import { store } from './store';
 import AppResults from './components/AppResults.vue';
+import ClassChoose from './components/ClassChoose.vue';
 
 
 export default {
@@ -16,12 +17,20 @@ export default {
     AppHeader,
     CardsList,
     AppResults,
+    ClassChoose,
      
   },
+  methods: {
+    requestDataFromApi() {
+      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')   
+     .then(response => (this.store.ArrArchetypes = response.data.archetype_name));
+    }
+  }, 
   created() {
-    // richiesta API
-    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-       .then(response => (this.store.CardsList = response.data.data));
+    this.requestDataFromApi();
+    
+    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
+      .then(response => (this.store.CardsList = response.data.data));
   }
 };
 
@@ -31,6 +40,7 @@ export default {
 <template>
   <app-header />
   <main>
+    <class-choose @performSearch="requestDataFromApi"/>
     <app-results />
     <cards-list />
   </main>
